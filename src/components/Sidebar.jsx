@@ -23,14 +23,16 @@ function Sidebar() {
         </div>
       </button>
 
-      <div className=" flex-grow overflow-y-scroll py-1 relative">
+      <div className=" flex-grow overflow-y-scroll scrollbar-hide py-1 pt-4 relative overflow-x-none">
         
-        <ChatSetter />
+        <ChatSetter heading="This is a test" />
+        <ChatSetter heading="Rise of ChatGPt" />
+        
         
       </div>
 
       <div className="relative">
-      <div className=" bg-gradient-to-t from-black absolute -top-10 h-10 w-full" />
+      {/* <div className=" bg-gradient-to-t from-black absolute -top-10 h-10 w-full" /> */}
         <button className="text-white flex items-center justify-between w-full p-2 rounded-md hover:bg-[#2d2d2d]">
           <div className=" flex space-x-2 items-center">
             <div className=" bg-black rounded-full px-2 py-1 aspect-square">
