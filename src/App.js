@@ -1,15 +1,16 @@
 import React from 'react'
 import LoginScreen from './screens/LoginScreen'
 import SignInFlow from './screens/SignInFlow'
+import AppScreen from './screens/AppScreen'
 
 function App() {
   return (
     <div>
       {/* <LoginScreen /> */}
-      <SignInFlow />
+      {/* <SignInFlow /> */}
 
-      {/* Appscreen */}
-
+      <AppScreen />
+ 
     </div>
   )
 }

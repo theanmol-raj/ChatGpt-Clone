@@ -18,8 +18,12 @@ function SignInFlow() {
         <div className=" flex flex-col space-y-4 items-center w-[350px]">
           <h1 className=" text-3xl font-medium ">{flow ? 'Welcome Back' : 'Create your account'}</h1>
           <input
-            className=" border w-full py-3 px-3"
+            className=" border-gray-500 rounded-md border w-full py-3 px-3"
             placeholder="Email Address"
+          />
+          <input
+            className={` border-gray-500 rounded-md  border w-full py-3 px-3 `}
+            placeholder="Password"
           />
           <button className=" text-white bg-[#10a37f] w-full py-3 text-lg rounded-md">
             Continue
