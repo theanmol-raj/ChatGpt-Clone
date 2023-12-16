@@ -1,10 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import NotFound from "../utils/NotFound";
+import Handler from "../utils/Handler";
+import Auth from "../utils/Auth";
 
-function SignInFlow() {
+ 
 
-    const signin = true ;
-    const [flow ,setFlow] = useState(signin)
 
+
+function SignInFlow({setFn}) {
+  
+  const [nf ,SetNF] = useState(false)
+  const { id } = useParams()
+  const [flow ,setFlow] = useState(true)
+  useEffect(() => {
+    if (!( id === 'login' || id === 'signup' )){
+      SetNF(true)
+    }
+    else if( id === 'login'){
+      setFlow(true)
+    }
+    else{
+      setFlow(false)
+    }
+  } ,[])
+
+
+  const schema = { email : '' , password : ''} 
+  const [cred ,setCred]  = useState(schema)
+
+  const [googlesignin ,createUser,signinUser,signout] = Auth(setFn)
+
+
+
+
+  // signout()
+
+
+
+
+
+
+
+ 
+
+if (nf) return <NotFound />
 
   return (
     <div className=" w-full h-screen flex justify-center">
@@ -18,16 +58,25 @@ function SignInFlow() {
         <div className=" flex flex-col space-y-4 items-center w-[350px]">
           <h1 className=" text-3xl font-medium ">{flow ? 'Welcome Back' : 'Create your account'}</h1>
           <input
+            name="email"
+            value={cred.email}
+            onChange={(e) => Handler(e ,setCred)}
             className=" border-gray-500 rounded-md border w-full py-3 px-3"
             placeholder="Email Address"
           />
           <input
+            name="password"
+            value={cred.password}
+            onChange={(e) => Handler(e ,setCred)}
             className={` border-gray-500 rounded-md  border w-full py-3 px-3 `}
             placeholder="Password"
           />
-          <button className=" text-white bg-[#10a37f] w-full py-3 text-lg rounded-md">
+          {!flow ? <button onClick={()=>createUser(cred.email ,cred.password)} className=" text-white bg-[#10a37f] w-full py-3 text-lg rounded-md">
             Continue
-          </button>
+          </button>:
+          <button onClick={()=>signinUser(cred.email ,cred.password)} className=" text-white bg-[#10a37f] w-full py-3 text-lg rounded-md">
+            Continue
+          </button>}
           <div className=" flex items-center text-sm space-x-1 pb-8">
             <p>{ flow ? "Don't have an account?" : 'Already have an account?'}</p>
             <button onClick={()=>setFlow(!flow)} className=" text-[#10a37f]">{flow ? 'Sign Up' : 'Log in'}</button>
@@ -39,7 +88,7 @@ function SignInFlow() {
             </p>
           </div>
           <div className="w-full space-y-2 pt-8">
-            <div className=" flex items-center space-x-2 w-full border py-3 px-4 rounded-md">
+            <div onClick={googlesignin} className=" flex items-center space-x-2 w-full border py-3 px-4 rounded-md">
               <img
                 width="26"
                 height="26"

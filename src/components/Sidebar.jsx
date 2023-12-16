@@ -4,9 +4,13 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ChatSetter from "./ChatSetter";
 
 function Sidebar() {
+
+  
+
+
   return (
     <div className=" h-screen w-64 bg-black p-4 px-2 flex flex-col">
-      <button className="text-white flex items-center justify-between w-full p-2 rounded-md hover:bg-[#515151]">
+      <button   className="text-white flex items-center justify-between w-full p-2 rounded-md hover:bg-[#515151]">
         <div className=" flex space-x-2 items-center">
           <div className=" bg-white rounded-full p-1">
             <img

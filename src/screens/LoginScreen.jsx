@@ -1,10 +1,14 @@
 import React from 'react'
+import { redirect } from 'react-router-dom'
 
 function LoginScreen() {
   return (
     <div className=' w-full flex h-screen bg-black'>
         <div className=' w-2/3 bg-[#00002e] relative'>
-            <p className=' text-[#d292ff] flex text-xl absolute top-4 left-6 items-center font-semibold'>ChatGPT <div className=' h-5 rounded-full w-5 bg-[#d292ff]' /></p>
+           <div className=' flex items-center absolute top-4 left-6 space-x-1'>
+           <p className=' text-[#d292ff] flex text-xl  items-center font-semibold'>ChatGPT </p>
+           <div className=' h-5 rounded-full w-5 mt-1 bg-[#d292ff]' />
+           </div>
 
 
         </div>
@@ -13,8 +17,8 @@ function LoginScreen() {
                     <div className=' flex flex-col max-w-max'>
                         <p className=' font-bold text-center text-3xl  text-white pb-2'>Get Started</p>
                         <div className=' flex  space-x-4 mt-2'>
-                            <button className='bg-[#3c46ff] hover:bg-[#3c3cff] cursor-pointer py-3 px-16 rounded-md text-white '>Log in</button>
-                            <button className='bg-[#3c46ff] hover:bg-[#3c3fff] cursor-pointer py-3 px-16 rounded-md text-white '>Sign up</button>
+                            <a href='/auth/login'  className='bg-[#3c46ff] hover:bg-[#3c3cff] cursor-pointer py-3 px-16 rounded-md text-white '>Log in</a>
+                            <a href='/auth/signup'  className='bg-[#3c46ff] hover:bg-[#3c3fff] cursor-pointer py-3 px-16 rounded-md text-white '>Sign up</a>
                         </div>
 
                     </div>
