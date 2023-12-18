@@ -1,27 +1,22 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
+import Sidebar from "../components/Sidebar";import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 import ChatComponent from "../components/ChatComponent";
 import BaseComponent from "../components/BaseComponent";
 import IosShareIcon from '@mui/icons-material/IosShare';
 import newChatHandler from "../utils/NewChatHandler";
+import ChatHandler from "../utils/ChatHandler";
 
 
 
-function AppScreen({user ,setFn}) {
-
+function ChatScreen({user,setFn}) {
+  const { chatID} = useParams()
+  
   const [message ,setMessage] = useState('')
-
-  const [nci , snci] = useState(null)
   async function chatHandler(){
-      const newId =  await newChatHandler(user?.uid ,message)
-      snci(newId)
-  }
-
-
-  if (nci) return <Navigate to={`/c/${nci}`} />
-
-
+    await ChatHandler(user?.uid ,chatID ,message)
+    setMessage('')
+}
+  
 
   
   return (
@@ -29,7 +24,7 @@ function AppScreen({user ,setFn}) {
       <Sidebar setFn={setFn} user={user} />
       <div className=" flex flex-col h-screen w-full py-4 md:py-6 ">
         <div className="flex-grow overflow-y-scroll scrollbar-hide ">
-        <BaseComponent/>
+            <ChatComponent user={user} chatID={chatID} />
         </div>
         <div className=" h-6" />
         <div className="max-w-3xl relative space-x-4 flex   items-center p-3 mx-auto w-full border-gray-300/50 border rounded-lg">
@@ -43,4 +38,4 @@ function AppScreen({user ,setFn}) {
   );
 }
 
-export default AppScreen;
+export default ChatScreen;

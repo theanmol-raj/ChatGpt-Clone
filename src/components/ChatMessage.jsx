@@ -1,6 +1,7 @@
 import React from 'react'
 
-function ChatMessage({user}) {
+function ChatMessage({user ,item}) {
+  // console.log(item)
 
   return (
     <div className={`  p-4 py-2'`}>
@@ -16,7 +17,7 @@ function ChatMessage({user}) {
         </div>
         <div>
             <p className=' font-extrabold '>{user? 'You' : 'ChatGPT'}</p>
-            <p className=' text-white/90 text-sm'>How are you ?</p>
+            <p className=' text-white/90 text-sm'>{item.message}</p>
         </div>
 
     </div>

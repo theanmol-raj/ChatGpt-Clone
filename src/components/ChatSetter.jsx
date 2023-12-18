@@ -2,10 +2,14 @@ import React from 'react'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import DeleteChat from '../utils/DeleteChat';
 
 
 
- function CustomMenu() {
+ function CustomMenu({userId ,roomId}) {
+
+  // console.log(userId , roomId)
 
 
 
@@ -51,6 +55,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
                 <Menu.Item>
                 <div className=' w-full hover:bg-[#1e1d1d] rounded-md cursor-pointer'>
                     <button
+                      onClick={()=>DeleteChat(userId ,roomId)}
                       className=' p-2 max-w-max text-sm text-red-500 hover:bg-[#1e1d1d]'
                     >
                       
@@ -70,11 +75,14 @@ import { Fragment, useEffect, useRef, useState } from 'react'
   
   
 
-function ChatSetter(props) {
+function ChatSetter({item ,user}) {
+  const navigate = useNavigate()
+  
+
   return (
-    <div className="text-white flex items-center justify-between w-full p-2 rounded-md hover:bg-[#1b1a1a]">
-        <p className=' text-sm'>{props.heading}</p>
-        <CustomMenu />
+    <div onClick={()=>navigate(`/c/${item.id}`)}  className="text-white flex items-center justify-between w-full p-2 rounded-md hover:bg-[#1b1a1a]">
+        <p className=' text-sm'>{item.summary}</p>
+        <CustomMenu userId={user?.uid} roomId={item?.id} />
         
     </div>
   )

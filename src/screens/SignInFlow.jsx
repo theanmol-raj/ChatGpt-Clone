@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import NotFound from "../utils/NotFound";
 import Handler from "../utils/Handler";
 import Auth from "../utils/Auth";
@@ -8,7 +8,7 @@ import Auth from "../utils/Auth";
 
 
 
-function SignInFlow({setFn}) {
+function SignInFlow({user , setFn}) {
   
   const [nf ,SetNF] = useState(false)
   const { id } = useParams()
@@ -30,7 +30,7 @@ function SignInFlow({setFn}) {
   const [cred ,setCred]  = useState(schema)
 
   const [googlesignin ,createUser,signinUser,signout] = Auth(setFn)
-
+  if (user) return <Navigate to='/' />
 
 
 
